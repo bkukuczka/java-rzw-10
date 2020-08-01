@@ -1,4 +1,4 @@
-package pl.sda.sbrestdemo.countries;
+package pl.sda.countriesmanager.countries;
 
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package pl.sda.sbrestdemo.countries;
+package pl.sda.countriesmanager.countries;
 
 public class CountryDto {
     private String name;

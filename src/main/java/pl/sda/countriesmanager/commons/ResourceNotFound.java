@@ -1,4 +1,4 @@
-package pl.sda.sbrestdemo.commons;
+package pl.sda.countriesmanager.commons;
 
 public class ResourceNotFound extends RuntimeException {
     public ResourceNotFound() {

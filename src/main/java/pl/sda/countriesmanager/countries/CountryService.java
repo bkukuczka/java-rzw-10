@@ -1,7 +1,7 @@
-package pl.sda.sbrestdemo.countries;
+package pl.sda.countriesmanager.countries;
 
 import org.springframework.stereotype.Service;
-import pl.sda.sbrestdemo.commons.ResourceNotFound;
+import pl.sda.countriesmanager.commons.ResourceNotFound;
 
 import java.util.*;
 

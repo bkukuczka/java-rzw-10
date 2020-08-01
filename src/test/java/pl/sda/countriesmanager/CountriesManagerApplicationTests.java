@@ -1,4 +1,4 @@
-package pl.sda.sbrestdemo;
+package pl.sda.countriesmanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
