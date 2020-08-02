@@ -1,10 +1,14 @@
 package pl.sda.countriesmanager.countries;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "COUNTRIES")
 @Entity
 public class Country {
     @Id

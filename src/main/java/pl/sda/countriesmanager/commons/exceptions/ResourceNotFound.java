@@ -1,4 +1,4 @@
-package pl.sda.countriesmanager.commons;
+package pl.sda.countriesmanager.commons.exceptions;
 
 public class ResourceNotFound extends RuntimeException {
     public ResourceNotFound() {

@@ -1,7 +1,7 @@
 package pl.sda.countriesmanager.countries;
 
 import org.springframework.stereotype.Service;
-import pl.sda.countriesmanager.commons.ResourceNotFound;
+import pl.sda.countriesmanager.commons.exceptions.ResourceNotFound;
 
 import java.util.*;
 
@@ -22,19 +22,17 @@ public class CountryService {
         countries.add(CountryDto.of("USA", "Washington", "English", "USD", 360000000));
     }
 
-    Collection<Country> getAllCountries() {
-        return repository.findAll();
+    Collection<Country> getAllCountries(Integer minPopulation) {
+        return repository.findAllWithMinPopulation(minPopulation);
     }
 
     public void createCountry(CountryDto country) {
         countries.add(country);
     }
 
-    public CountryDto findByName(String countryName) {
-        return countries.stream()
-                .filter(c -> c.getName().equals(countryName))
-                .findFirst()
-                .orElseThrow(() -> new ResourceNotFound("Country not exist"));
+    public Country findByName(String countryName) {
+        return repository.findByName(countryName)
+                .orElseThrow(() -> new ResourceNotFound("Country not found"));
     }
 
     public void deleteCountry(String countryName) {
