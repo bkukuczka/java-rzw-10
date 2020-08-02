@@ -8,18 +8,22 @@ import java.util.*;
 @Service
 public class CountryService {
 
+    private CountryRepository repository;
+
     private List<CountryDto> countries;
 
-    public CountryService() {
+    public CountryService(CountryRepository repository) {
+        this.repository = repository;
+
         countries = new ArrayList<>();
 
-        countries.add(new CountryDto("Poland", "Warsaw", "Polish", "PLN", 37970000));
-        countries.add(new CountryDto("Czech Republic", "Prague", "Czech", "CZK", 15000000));
-        countries.add(new CountryDto("USA", "Washington", "English", "USD", 360000000));
+        countries.add(CountryDto.of("Poland", "Warsaw", "Polish", "PLN", 37970000));
+        countries.add(CountryDto.of("Czech Republic", "Prague", "Czech", "CZK", 15000000));
+        countries.add(CountryDto.of("USA", "Washington", "English", "USD", 360000000));
     }
 
-    Collection<CountryDto> getAllCountries() {
-        return countries;
+    Collection<Country> getAllCountries() {
+        return repository.findAll();
     }
 
     public void createCountry(CountryDto country) {

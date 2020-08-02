@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.ResponseEntity.noContent;
@@ -15,13 +16,17 @@ public class CountryController {
 
     CountryService service;
 
+    CountryMapper mapper;
+
     public CountryController(CountryService service) {
         this.service = service;
     }
 
     @GetMapping
     public ResponseEntity<Collection<CountryDto>> getCountries() {
-        var countries = service.getAllCountries();
+        var countries = service.getAllCountries().stream()
+                .map(mapper::map)
+                .collect(Collectors.toList());
 
         return ok().body(countries);
     }

@@ -25,6 +25,10 @@ class CountryControllerTest {
     @MockBean
     CountryService mockService;
 
+    @MockBean
+    CountryMapper mockMapper;
+
+
     @Test
     void shouldEditCountryWhenChangedProvided() throws Exception {
         //given

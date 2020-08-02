@@ -1,11 +1,15 @@
 package pl.sda.countriesmanager.countries;
 
-import lombok.*;
+import lombok.Getter;
 
-@Data
-@AllArgsConstructor(staticName = "of")
-@Builder
-public class CountryDto {
+import javax.persistence.*;
+
+@Getter
+@Entity
+public class Country {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private String capital;
     private String language;
