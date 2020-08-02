@@ -32,4 +32,14 @@ public class CountryService {
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFound("Country not exist"));
     }
+
+    public void deleteCountry(String countryName) {
+        var country = findByName(countryName);
+
+        countries.remove(country);
+    }
+
+    public void editCountry(CountryDto countryToEdit) {
+
+    }
 }
