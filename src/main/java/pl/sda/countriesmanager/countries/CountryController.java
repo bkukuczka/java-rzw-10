@@ -1,10 +1,12 @@
 package pl.sda.countriesmanager.countries;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -13,7 +15,8 @@ import static org.springframework.http.ResponseEntity.noContent;
 import static org.springframework.http.ResponseEntity.ok;
 
 @AllArgsConstructor
-@RequestMapping(path = "/countries")
+@RequestMapping(path = "/countries",
+        produces = {MediaType.APPLICATION_JSON_VALUE})
 @RestController
 public class CountryController {
 
@@ -21,9 +24,11 @@ public class CountryController {
 
     CountryMapper mapper;
 
+    @ApiOperation(value = "Returns all countries with optional minimum population filter", httpMethod = "GET")
+    @ApiResponse(code = 200, message = "Get all countries succeeded")
     @GetMapping
     public ResponseEntity<Collection<CountryDto>> getCountries(
-            @PathParam("minPopulation") Integer minPopulation) {
+            @RequestParam("minPopulation") Integer minPopulation) {
 
         var countries = service.getAllCountries(minPopulation).stream()
                 .map(mapper::map)
@@ -32,6 +37,8 @@ public class CountryController {
         return ok().body(countries);
     }
 
+    @ApiOperation(value = "Returns a specific country with given name", httpMethod = "GET")
+    @ApiResponse(code = 200, message = "Get a specific country succeeded")
     @GetMapping("/{countryName}")
     public CountryDto getCountryById(@PathVariable String countryName) {
         return mapper.map(service.findByName(countryName));
